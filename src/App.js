@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Header from "./components/Header.js";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      alphabet: ["a", "c", "b"],
+      title: "hello",
+    };
+  }
+
+  sortAlphabet = () => {
+    this.setState({ alphabet: this.state.alphabet.sort() });
+  };
+
+  changeTitle = () => {
+    this.setState({ title: "World" });
+  };
+
+  render() {
+    return (
+      <div>
+        <Header title={this.state.title} />
+        {this.state.alphabet.map((item, key) => item)}
+        <br></br>
+        <button onClick={this.sortAlphabet}>Sort</button>
+        <button onClick={this.changeTitle}>change title</button>
+      </div>
+    );
+  }
 }
 
 export default App;
